@@ -1,0 +1,157 @@
+/* ============================================================
+   MOBILE INTERFACE — app-like: bottom dock with avatars, full-bleed
+   story covers, snap carousels, swipe gestures, big touch targets
+   ============================================================ */
+html[data-device=mobile] { --gut: 18px; --secpad: 56px; }
+html[data-device=mobile] body { font-size: 15.5px; overscroll-behavior-y: none; }
+
+/* top bar (slim) */
+html[data-device=mobile] #topbar { height: calc(56px + var(--safe-t)); padding: var(--safe-t) 14px 0; }
+html[data-device=mobile] #nav { display: none; }
+html[data-device=mobile] .logo-mark { width: 34px; height: 34px; border-radius: 11px; font-size: 17px; }
+html[data-device=mobile] .logo-t { font-size: 15px; }
+html[data-device=mobile] .ctl-btn { min-width: 44px; height: 44px; }
+html[data-device=mobile] #topbar { background: rgba(2, 8, 11, .74); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-block-end: 1px solid var(--line2); }
+html[data-device=mobile] #topbar::before { display: none; }
+html[data-device=mobile] .snd-pop { inset-inline-end: -4px; width: min(280px, calc(100vw - 32px)); }
+
+/* bottom dock */
+html[data-device=mobile] #dock { position: fixed; z-index: 70; inset-inline: 10px; inset-block-end: calc(10px + var(--safe-b)); height: 74px; border-radius: 28px; background: rgba(3, 14, 19, .72); border: 1px solid var(--line); backdrop-filter: blur(22px) saturate(1.5); -webkit-backdrop-filter: blur(22px) saturate(1.5); box-shadow: 0 20px 60px rgba(0, 0, 0, .6), 0 0 40px color-mix(in srgb, var(--a) 14%, transparent); overflow: hidden; transition: transform .5s var(--ease); }
+html[data-device=mobile] #dock.hide { transform: translateY(140%); }
+html[data-device=mobile] .dock-track { display: flex; align-items: center; gap: 4px; height: 100%; padding-inline: 8px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+html[data-device=mobile] .dock-track::-webkit-scrollbar { display: none; }
+html[data-device=mobile] .dk { flex: 0 0 68px; height: 62px; display: grid; justify-items: center; align-content: center; gap: 4px; border: 0; background: none; border-radius: 20px; scroll-snap-align: center; color: var(--mut); position: relative; transition: transform .4s var(--ease), background .3s, color .3s; --a: var(--pa, #4df3ff); }
+html[data-device=mobile] .dk .av { position: relative; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; overflow: hidden; border: 1.5px solid color-mix(in srgb, var(--a) 50%, transparent); background: color-mix(in srgb, var(--a) 12%, #04141a); font-size: 18px; transition: transform .4s var(--ease), box-shadow .4s, border-color .3s; }
+html[data-device=mobile] .dk .av img { width: 100%; height: 100%; object-fit: cover; }
+html[data-device=mobile] .dk .av b { font: 400 17px var(--f-bebas); letter-spacing: .04em; color: var(--a); }
+html[data-device=mobile] .dk span { font: 600 11px/1 var(--f-body); }
+html[data-device=mobile] .dk.on { color: #fff; background: color-mix(in srgb, var(--a) 16%, transparent); }
+html[data-device=mobile] .dk.on .av { transform: scale(1.14); border-color: var(--a); box-shadow: 0 0 22px color-mix(in srgb, var(--a) 60%, transparent); }
+html[data-device=mobile] .dk.on::after { content: ''; position: absolute; inset-block-end: 3px; width: 16px; height: 3px; border-radius: 3px; background: var(--a); box-shadow: 0 0 10px var(--a); }
+html[data-device=mobile] .dk:active { transform: scale(.9); }
+html[data-device=mobile] .scene:not(#scene-credits) { padding-bottom: calc(100px + var(--safe-b)); }
+
+/* hero */
+html[data-device=mobile] .hero { min-height: 100svh; --hero-fs: clamp(44px, 13vw, 66px); --hero-pb: calc(150px + var(--safe-b)); }
+html[data-device=mobile] .hero-inner { padding-inline: var(--gut); }
+html[data-device=mobile] .hero-img { object-position: 50% 50%; }
+html[data-device=mobile] .hero-h1 { max-width: 11ch; }
+html[data-device=mobile] .hero-cta { flex-direction: column; align-items: stretch; }
+html[data-device=mobile] .hero-cta .btn { width: 100%; min-height: 54px; font-size: 16px; }
+html[data-device=mobile] .hero-stamp { inset-block-start: calc(78px + var(--safe-t)); inset-inline-end: 16px; font-size: 10px; padding: 7px 12px; }
+html[data-device=mobile] .hero-hud .tc { inset-block-start: calc(84px + var(--safe-t)); inset-inline-start: 16px; font-size: 10px; }
+html[data-device=mobile] .hero-hud .c, html[data-device=mobile] .hero-hud .tc.l { display: none; }
+html[data-device=mobile] .scroll-cue { display: none; }
+html[data-device=mobile] .rl { --rw: 168px; }
+html[data-device=mobile] .reel { padding: 22px 0; }
+
+/* crew */
+html[data-device=mobile] .sec-head { display: block; }
+html[data-device=mobile] .sec-note { margin-block-start: 12px; max-width: none; }
+html[data-device=mobile] .crew-grid { display: block; }
+html[data-device=mobile] .crewlist { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-block-start: 14px; }
+html[data-device=mobile] .cl { display: flex; align-items: center; gap: 12px; padding: 12px 14px; min-height: 54px; border-radius: 16px; border: 1px solid color-mix(in srgb, var(--pa) 40%, transparent); background: color-mix(in srgb, var(--pa) 9%, rgba(3, 14, 19, .6)); text-align: start; }
+html[data-device=mobile] .cl em { font: 700 11px var(--f-mono); font-style: normal; color: var(--pa); }
+html[data-device=mobile] .cl b { font: 400 28px/1 var(--f-bebas); text-transform: uppercase; letter-spacing: .03em; direction: ltr; }
+html[data-device=mobile] .cl span, html[data-device=mobile] .cl i { display: none; }
+html[data-device=mobile] .cl:active { transform: scale(.96); }
+html[data-device=mobile] .pin-lab > span { display: none; }
+html[data-device=mobile] .pin-lab { padding: 4px 9px; }
+html[data-device=mobile] .crewmap { border-radius: 24px; margin-inline: calc(var(--gut) * -.5); }
+html[data-device=mobile] .crewmap > img { aspect-ratio: 4/3.6; }
+html[data-device=mobile] .pin-lab { padding: 5px 11px 5px 8px; font-size: 12px; }
+html[data-device=mobile] .pin-lab small { font-size: 9px; }
+html[data-device=mobile] .pin-dot { width: 14px; height: 14px; }
+html[data-device=mobile] .crew-hint { font-size: 10px; }
+
+/* memory of the day */
+html[data-device=mobile] .momcard { grid-template-columns: 1fr; border-radius: 26px; }
+html[data-device=mobile] .mom-img { min-height: 0; aspect-ratio: 4/3.2; }
+html[data-device=mobile] .mom-body { padding: 22px 22px 26px; }
+html[data-device=mobile] .mom-num { font-size: 90px; inset-block-end: 4px; }
+html[data-device=mobile] .momcard:active { transform: scale(.985); }
+html[data-device=mobile] .mom-head { display: block; }
+html[data-device=mobile] .mom-head .btn { width: 100%; margin-block-start: 16px; min-height: 52px; }
+
+/* files carousel */
+html[data-device=mobile] .files-grid { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px var(--gut) 22px; margin-inline: calc(var(--gut) * -1); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+html[data-device=mobile] .files-grid::-webkit-scrollbar { display: none; }
+html[data-device=mobile] .fcard { flex: 0 0 74vw; max-width: 320px; aspect-ratio: 3/4.3; scroll-snap-align: center; border-radius: 26px; }
+html[data-device=mobile] .fcard > img { filter: grayscale(.15) contrast(1.08) brightness(.82); }
+html[data-device=mobile] .fcard:active { transform: scale(.97); }
+html[data-device=mobile] .fname { font-size: 58px; }
+
+/* idea & suggestion */
+html[data-device=mobile] .idea h2 { font-size: clamp(34px, 10vw, 52px); }
+html[data-device=mobile] .sug { border-radius: 26px; padding: 22px 18px; }
+html[data-device=mobile] .sug-act { flex-direction: column; align-items: stretch; }
+html[data-device=mobile] .sug-act .btn { min-height: 54px; }
+html[data-device=mobile] .sug textarea { font-size: 16px; }
+html[data-device=mobile] .foot { flex-direction: column; align-items: center; text-align: center; padding-block-end: 20px; }
+
+/* profile — full-bleed story cover */
+html[data-device=mobile] .phero { padding: 0; }
+html[data-device=mobile] .phero-grid { display: block; width: 100%; }
+html[data-device=mobile] .pcover { border-radius: 0 0 34px 34px; border-inline: 0; border-block-start: 0; height: min(78svh, 700px); min-height: 460px; box-shadow: 0 30px 80px rgba(0, 0, 0, .6); }
+html[data-device=mobile] .pcover-img { object-position: var(--fp, 50% 30%); }
+html[data-device=mobile] .pcover .fr { display: none; }
+html[data-device=mobile] .pcover::before { background: linear-gradient(180deg, rgba(2, 8, 11, .5), transparent 22%, transparent 42%, var(--ink) 100%), linear-gradient(135deg, color-mix(in srgb, var(--a) 24%, transparent), transparent 55%); }
+html[data-device=mobile] .pnum { inset-block-end: auto; inset-block-start: calc(70px + var(--safe-t)); font-size: 92px; inset-inline-start: 16px; opacity: .7; }
+html[data-device=mobile] .pstory { position: absolute; z-index: 4; inset-inline: 14px; inset-block-start: calc(62px + var(--safe-t)); display: flex; gap: 5px; }
+html[data-device=mobile] .pstory i { flex: 1; height: 3px; border-radius: 3px; background: rgba(255, 255, 255, .25); overflow: hidden; }
+html[data-device=mobile] .pstory i.done { background: var(--a); box-shadow: 0 0 8px var(--a); }
+html[data-device=mobile] .pstory i.cur { background: var(--a); box-shadow: 0 0 10px var(--a); }
+html[data-device=mobile] .pinfo { position: relative; z-index: 3; margin-block-start: -150px; padding-inline: var(--gut); }
+html[data-device=mobile] .pname { --pn-fs: clamp(80px, 25vw, 130px); margin-block-start: 0; }
+html[data-device=mobile] .ptag { font-size: 28px; }
+html[data-device=mobile] .pstats { gap: 8px; max-width: none; margin-block: 22px; }
+html[data-device=mobile] .pstat { padding: 14px 6px 12px; border-radius: 16px; }
+html[data-device=mobile] .pstat b { font-size: 40px; }
+html[data-device=mobile] .pact { display: grid; grid-template-columns: 1fr; }
+html[data-device=mobile] .pact .btn { min-height: 54px; width: 100%; }
+html[data-device=mobile] .pjoke { font-size: 20px; padding-block: 14px; }
+html[data-device=mobile] .gal-head { display: block; }
+html[data-device=mobile] .gal-head .cnt { display: inline-block; margin-block-start: 14px; }
+html[data-device=mobile] .gal-head .sec-note { max-width: none; margin-block-start: 8px; }
+html[data-device=mobile] .masonry { --cols: 2; --gap: 10px; }
+html[data-device=mobile] .ph-b { border-radius: 16px; }
+html[data-device=mobile] .ph-b:active { transform: scale(.97); }
+html[data-device=mobile] .ph-n { opacity: 1; transform: none; font-size: 9px; }
+html[data-device=mobile] .ph-b::after { opacity: 1; background: linear-gradient(180deg, transparent 70%, rgba(2, 8, 11, .6)); }
+html[data-device=mobile] .banner { border-radius: 24px; margin-block-end: 30px; }
+html[data-device=mobile] .pnext b { font-size: clamp(56px, 20vw, 110px); }
+html[data-device=mobile] .pnext { padding-block: 30px 44px; }
+
+/* credits */
+html[data-device=mobile] .cr-ctl { inset-block-end: calc(104px + var(--safe-b)); }
+html[data-device=mobile] .cr-copy h2 { font-size: clamp(50px, 16vw, 90px); }
+html[data-device=mobile] .cr-copy h3 { font-size: clamp(34px, 11vw, 60px); letter-spacing: .1em; }
+
+/* lightbox — fullscreen, swipe */
+html[data-device=mobile] .lb-stage { padding: 0 8px; }
+html[data-device=mobile] .lb-stage img { border-radius: 10px; }
+html[data-device=mobile] .lb-nav, html[data-device=mobile] .lb-strip { display: none; }
+html[data-device=mobile] .lb-dots { display: flex; position: relative; z-index: 3; justify-content: center; gap: 6px; padding: 14px 0 max(22px, var(--safe-b)); flex-wrap: wrap; max-width: 90vw; margin-inline: auto; }
+html[data-device=mobile] .lb-dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, .3); transition: .3s var(--ease); }
+html[data-device=mobile] .lb-dots i.on { width: 22px; border-radius: 4px; background: var(--a); box-shadow: 0 0 10px var(--a); }
+html[data-device=mobile] #lightbox.ui-off .lb-top, html[data-device=mobile] #lightbox.ui-off .lb-dots { opacity: 0; pointer-events: none; }
+html[data-device=mobile] .lb-top { padding-inline: 16px; }
+html[data-device=mobile] .lb-x { width: 50px; height: 50px; }
+html[data-device=mobile] .lb-hint { position: absolute; z-index: 5; inset-inline: 0; inset-block-end: 90px; text-align: center; font: 400 12px var(--f-mono); letter-spacing: .14em; color: rgba(255, 255, 255, .6); animation: hintOut 4s 1s forwards; pointer-events: none; }
+@keyframes hintOut { to { opacity: 0; } }
+
+/* touch: no hover-only affordances */
+@media (hover: none) {
+  .rv { transition-duration: .8s; }
+  .ph-b img { transition: opacity .7s var(--ease), transform .9s var(--ease); }
+}
+/* very small phones */
+@media (max-width: 360px) {
+  html[data-device=mobile] .dk { flex-basis: 62px; }
+  html[data-device=mobile] .logo-t { display: none; }
+}
+/* landscape phones */
+@media (max-height: 480px) and (orientation: landscape) {
+  html[data-device=mobile] .hero { min-height: 120svh; }
+  html[data-device=mobile] .pcover { height: 100svh; }
+}

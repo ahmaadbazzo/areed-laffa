@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-device="desktop" data-boot="1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#02080b">
+<meta name="color-scheme" content="dark">
+<title>أرشيف أريد لفة · Areed Laffa Archive</title>
+<meta name="description" content="أرشيف أريد لفة — ذكريات الشلة محفوظة بمحل واحد. Five years. Hundreds of memories. One archive.">
+<meta property="og:title" content="أرشيف أريد لفة · Areed Laffa Archive">
+<meta property="og:description" content="Five years. Hundreds of memories. One archive.">
+<meta property="og:type" content="website">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Reem+Kufi:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/desktop.css">
+<link rel="stylesheet" href="css/mobile.css">
+<script src="js/device.js"></script>
+</head>
+<body data-scene="home">
+<noscript><p style="padding:40px;color:#fff;font:18px sans-serif;text-align:center">هذا الموقع يحتاج JavaScript ليشتغل · This site needs JavaScript.</p></noscript>
+
+<!-- ambient layers -->
+<div id="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<canvas id="dust" aria-hidden="true"></canvas>
+<canvas id="grain" aria-hidden="true"></canvas>
+<div id="vignette" aria-hidden="true"></div>
+<div id="cursor" aria-hidden="true"><i class="c-dot"></i><i class="c-ring"><b class="c-label"></b></i></div>
+<div id="progress" aria-hidden="true"><i></i></div>
+
+<!-- INTRO -->
+<section id="intro" dir="ltr" lang="en">
+  <div class="in-beams" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="in-floor" aria-hidden="true"></div>
+  <div class="in-orbit o1" aria-hidden="true"></div><div class="in-orbit o2" aria-hidden="true"></div><div class="in-orbit o3" aria-hidden="true"></div>
+  <div class="in-hud" aria-hidden="true"><span>REC <b class="rec">●</b></span><span class="in-tc" id="introTc">00:00:00:00</span><span>4K · 24 FPS</span></div>
+  <div class="in-body">
+    <div class="in-kicker" data-i="intro_kicker"></div>
+    <div class="in-mark"><span>AL</span></div>
+    <h1 class="in-title" id="introTitle" aria-label='Welcome To The "Areed Laffa" Archive'></h1>
+    <p class="in-sub" data-i="intro_sub"></p>
+    <button class="in-btn" id="enterBtn" type="button"><span class="in-btn-t" data-i="intro_btn"></span><i>↗</i><em></em></button>
+    <p class="in-hint" data-i="intro_hint"></p>
+  </div>
+  <div class="in-flash" aria-hidden="true"></div>
+</section>
+
+<!-- APP -->
+<div id="app" hidden>
+  <header id="topbar">
+    <a class="logo" href="#home" data-go="home"><span class="logo-mark">AL</span><span class="logo-t"><b data-i="logo_a"></b> <i data-i="logo_b"></i></span></a>
+    <nav id="nav" aria-label="Sections"><span class="nav-ind" id="navInd"></span></nav>
+    <div class="ctl">
+      <button class="ctl-btn" id="langBtn" type="button" aria-label="Language">EN</button>
+      <div class="snd">
+        <button class="ctl-btn snd-btn" id="sndBtn" type="button" aria-label="Sound" aria-expanded="false"><span class="eq"><i></i><i></i><i></i><i></i></span></button>
+        <div class="snd-pop" id="sndPop" hidden>
+          <div class="snd-h"><b data-i="snd_title"></b><span id="sndVal">80%</span></div>
+          <input id="sndVol" type="range" min="0" max="100" value="80" aria-label="Volume">
+          <label class="sw"><input type="checkbox" id="sndMusic" checked><span class="sw-t" data-i="snd_music"></span><i></i></label>
+          <label class="sw"><input type="checkbox" id="sndFx" checked><span class="sw-t" data-i="snd_fx"></span><i></i></label>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="stage"></main>
+
+  <nav id="dock" aria-label="Sections"><div class="dock-track" id="dockTrack"></div></nav>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" hidden role="dialog" aria-modal="true">
+  <div class="lb-bg" id="lbBg"></div>
+  <div class="lb-top"><span class="lb-count" id="lbCount"></span><span class="lb-who" id="lbWho"></span><button class="lb-x" id="lbClose" type="button" aria-label="Close">✕</button></div>
+  <button class="lb-nav lb-prev" id="lbPrev" type="button" aria-label="Previous">‹</button>
+  <button class="lb-nav lb-next" id="lbNext" type="button" aria-label="Next">›</button>
+  <div class="lb-stage" id="lbStage"><img id="lbImg" alt="" draggable="false"></div>
+  <div class="lb-strip" id="lbStrip"></div>
+  <div class="lb-dots" id="lbDots"></div>
+</div>
+
+<!-- SCENE TRANSITION (letterbox + light streak) -->
+<div id="curtain" aria-hidden="true"><i class="cb t"></i><i class="cb b"></i><i class="cs"></i><div class="ct"><small></small><b></b></div></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
